@@ -10,6 +10,7 @@ import socket
 import splunk
 import logging
 import logging.handlers
+import re
 
 # set debug
 myDebug='no'
@@ -56,7 +57,7 @@ with open(myLookup) as csvfile:
     logger.info('reading lines ...')  # logger
     for row in readCSV:
         logger.info('looping lines ...')  # logger
-        if myHost in row[0]:
+        if re.match(row[0], myHost):
             logger.info('host found in lookup %s ...' % myHost)  # logger
             rest_response = row[1]
             logger.info('rest_response %s ...' % rest_response)  # logger
